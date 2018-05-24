@@ -1,19 +1,13 @@
 package com.example.alex.rhymebot;
 
-import android.content.res.Resources;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import java.io.IOException;
 
 public class MenuActivity extends AppCompatActivity
 {
@@ -29,25 +23,19 @@ public class MenuActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        btn1 = (Button) findViewById(R.id.button);
-        btn2 = (Button) findViewById(R.id.button2);
-        btn3 = (Button) findViewById(R.id.button3);
+        btn1 = (Button) findViewById(R.id.button_rhymebot);
+        btn2 = (Button) findViewById(R.id.button_mods);
+        btn3 = (Button) findViewById(R.id.button_saved_verses);
 
-        background = getDrawable(R.drawable.rectangle);
+        background = getDrawable(R.drawable.dark_grey_rectangle);
         background_pressed = getDrawable(R.drawable.rectangle_pressed);
 
         setTouchListener(btn1);
         setTouchListener(btn2);
         setTouchListener(btn3);
-
-        String title ="RhymeBot";
-        SpannableString s = new SpannableString(title);
-        s.setSpan(new ForegroundColorSpan(Color.parseColor("#fffce87d")), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(s);
-
     }
 
-    private static void setTouchListener(final Button btn)
+    private void setTouchListener(final Button btn)
     {
         btn.setOnTouchListener(new View.OnTouchListener()
         {
@@ -60,6 +48,20 @@ public class MenuActivity extends AppCompatActivity
                 {
                     btn.setTextColor(Color.parseColor("#ff4e4e50"));
                     btn.setBackground(background_pressed);
+                    CharSequence buttonText = btn.getText();
+
+                    if(buttonText.equals("Conversație"))
+                    {
+                        startActivity(new Intent(MenuActivity.this, ConversationActivity.class));
+                    }
+                    else if(buttonText.equals("Moduri"))
+                    {
+                        startActivity(new Intent(MenuActivity.this, ModsActivity.class));
+                    }
+                    else
+                    {
+                        startActivity(new Intent(MenuActivity.this, SavedVersesActivity.class));
+                    }
                 }
                 else if(action == MotionEvent.ACTION_UP)
                 {

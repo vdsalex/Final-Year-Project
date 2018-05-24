@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">RhymeBot</string>
+    <string name="app_name">Euterpe</string>
+    <string name="button_1_menu">Conversație</string>
+    <string name="button_2_menu">Versuri Salvate</string>
+    <string name="button_3_menu">Moduri</string>
+    <string name="edit_text_hint">Scrie un mesaj</string>
+    <string name="image_button_description">Send Button</string>
 </resources>

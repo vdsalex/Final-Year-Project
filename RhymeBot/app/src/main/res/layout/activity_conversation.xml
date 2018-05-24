@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="84dp">
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/fond_gri_inchis"/>
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="57dp"
+            app:srcCompat="@drawable/text_euterpe_simplu"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/light_grey2"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/imageButton2"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toStartOf="@+id/imageButton2"
+            android:background="@drawable/dark_grey_rectangle"
+            android:ems="10"
+            android:hint="@string/edit_text_hint"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="@color/gold"
+            android:textColorHint="@color/light_grey"/>
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/image_button_description"
+            android:cropToPadding="false"
+            android:paddingBottom="2dp"
+            android:paddingEnd="3dp"
+            android:paddingStart="3dp"
+            android:paddingTop="2dp"
+            app:srcCompat="@drawable/arrow_button_complete_medium"/>
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="412dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="70dp"
+        android:background="@color/light_grey"/>
+</FrameLayout>
