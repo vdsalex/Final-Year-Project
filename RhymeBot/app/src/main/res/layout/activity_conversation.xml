@@ -50,9 +50,10 @@
             android:layout_marginStart="8dp"
             android:layout_toStartOf="@+id/imageButton2"
             android:background="@drawable/dark_grey_rectangle"
-            android:ems="10"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLines="10"
+            android:maxLength="2000"
             android:hint="@string/edit_text_hint"
-            android:inputType="textPersonName"
             android:padding="10dp"
             android:textColor="@color/gold"
             android:textColorHint="@color/light_grey"/>

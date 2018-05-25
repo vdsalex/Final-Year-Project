@@ -10,4 +10,9 @@
         <item name="android:textColorPrimary">@color/primary_text_material_light</item>
     </style>
 
+    <style name="TabWidgetTheme" parent="AppTheme">
+        <item name="android:textColorPrimary">@color/gold</item>
+        <item name="android:textColorSecondary">#DCD5D1</item>
+    </style>
+
 </resources>

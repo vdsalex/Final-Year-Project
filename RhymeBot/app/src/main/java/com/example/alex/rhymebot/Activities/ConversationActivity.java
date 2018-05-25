@@ -1,18 +1,16 @@
 package com.example.alex.rhymebot.Activities;
 
-import android.database.DataSetObserver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.alex.rhymebot.Adapter.ChatMessage;
 import com.example.alex.rhymebot.Adapter.MessagesAdapter;
 
 import com.example.alex.rhymebot.Bot;
@@ -37,7 +35,6 @@ public class ConversationActivity extends AppCompatActivity
         lastClickTime = 0;
 
         bot = new Bot();
-        ArrayList<String> someMessages = new ArrayList<>();
 
         final ListView messagesList = (ListView) this.findViewById(R.id.listView);
         final MessagesAdapter messagesAdapter = new MessagesAdapter(this);

@@ -2,14 +2,10 @@ package com.example.alex.rhymebot.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.print.PrintAttributes;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,30 +15,30 @@ import java.util.ArrayList;
 
 public class MessagesAdapter extends ArrayAdapter<String>
 {
-    private ArrayList<String> mesajeList;
+    private ArrayList<String> messagesList;
 
     public MessagesAdapter(Context context)
     {
         super(context, R.layout.list_item_layout, R.id.textview_list_item);
-        this.mesajeList = new ArrayList<>();
+        this.messagesList = new ArrayList<>();
     }
 
     @Override
     public void add(String chatMessage)
     {
-        mesajeList.add(chatMessage);
+        messagesList.add(chatMessage);
     }
 
     @Override
     public int getCount()
     {
-        return mesajeList.size();
+        return messagesList.size();
     }
 
     @Override
     public String getItem(int index)
     {
-        return mesajeList.get(index);
+        return messagesList.get(index);
     }
 
     @Override
