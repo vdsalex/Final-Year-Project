@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alex.rhymebot.ModsActivity">
+    tools:context="com.example.alex.rhymebot.Activities.ModsActivity">
 
     <ImageView
         android:id="@+id/imageView1"

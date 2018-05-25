@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="84dp">
+        android:layout_height="84dp"
+        android:layout_gravity="top">
 
         <ImageView
             android:id="@+id/imageView9"
@@ -30,6 +31,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/light_grey2"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
         android:layout_height="70dp"
         android:layout_gravity="bottom"
         android:orientation="horizontal">
@@ -66,17 +69,25 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/image_button_description"
             android:cropToPadding="false"
-            android:paddingBottom="2dp"
-            android:paddingEnd="3dp"
-            android:paddingStart="3dp"
-            android:paddingTop="2dp"
+            android:foreground="@drawable/round_button_ripple_effect"
+            android:paddingBottom="0dp"
+            android:paddingEnd="0dp"
+            android:paddingStart="0dp"
+            android:paddingTop="0dp"
             app:srcCompat="@drawable/arrow_button_complete_medium"/>
     </RelativeLayout>
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="412dp"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom"
         android:layout_marginBottom="70dp"
-        android:background="@color/light_grey"/>
+        android:layout_marginTop="83dp"
+        android:background="@color/light_grey"
+        android:smoothScrollbar="true"
+        android:scrollingCache="false"
+        android:animationCache="false"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
 </FrameLayout>

@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/iconita_euterpe_completa"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuActivity">
+        <activity android:name=".Activities.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,16 +17,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ConversationActivity"
-            android:parentActivityName=".MenuActivity">
+            android:name=".Activities.ConversationActivity"
+            android:parentActivityName=".Activities.MenuActivity">
         </activity>
         <activity
-            android:name=".ModsActivity"
-            android:parentActivityName=".MenuActivity">
+            android:name=".Activities.ModsActivity"
+            android:parentActivityName=".Activities.MenuActivity">
         </activity>
         <activity
-            android:name=".SavedVersesActivity"
-            android:parentActivityName=".MenuActivity">
+            android:name=".Activities.SavedVersesActivity"
+            android:parentActivityName=".Activities.MenuActivity">
+        </activity>
+        <activity android:name=".Activities.ModEminescuActivity">
+        </activity>
+        <activity android:name=".Activities.ModBacoviaActivity">
+        </activity>
+        <activity android:name=".Activities.ModStanescuActivity">
         </activity>
     </application>
 

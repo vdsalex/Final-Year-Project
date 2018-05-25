@@ -5,4 +5,7 @@
     <string name="button_3_menu">Moduri</string>
     <string name="edit_text_hint">Scrie un mesaj</string>
     <string name="image_button_description">Send Button</string>
+    <string name="textview_default_message">TextView</string>
+    <string name="activate_button_text_unpressed">Activează</string>
+    <string name="activate_button_text_pressed">Dezactivează</string>
 </resources>
