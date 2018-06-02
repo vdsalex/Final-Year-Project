@@ -13,13 +13,9 @@ import com.example.alex.rhymebot.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Alex on 5/25/2018.
- */
-
-public class SavedVersesAdapter extends ArrayAdapter<String>
+public class SavedVersesAdapter extends ArrayAdapter<ChatMessage>
 {
-    private ArrayList<String> versesList;
+    private ArrayList<ChatMessage> versesList;
 
     public SavedVersesAdapter(Context context)
     {
@@ -28,7 +24,7 @@ public class SavedVersesAdapter extends ArrayAdapter<String>
     }
 
     @Override
-    public void add(String verse)
+    public void add(ChatMessage verse)
     {
         versesList.add(verse);
     }
@@ -40,7 +36,13 @@ public class SavedVersesAdapter extends ArrayAdapter<String>
     }
 
     @Override
-    public String getItem(int index)
+    public void remove(ChatMessage message)
+    {
+        versesList.remove(message);
+    }
+
+    @Override
+    public ChatMessage getItem(int index)
     {
         return versesList.get(index);
     }
@@ -49,7 +51,7 @@ public class SavedVersesAdapter extends ArrayAdapter<String>
     public View getView(int position, View convertView, ViewGroup parent)
     {
         View view = convertView;
-        String verse = this.getItem(position);
+        ChatMessage verse = this.getItem(position);
 
         if(view == null)
         {
@@ -67,7 +69,7 @@ public class SavedVersesAdapter extends ArrayAdapter<String>
 
             textView.setLayoutParams(lp);
 
-            textView.setText(verse);
+            textView.setText(verse.getMessage());
         }
         else
         {
@@ -83,7 +85,7 @@ public class SavedVersesAdapter extends ArrayAdapter<String>
 
                 textView.setLayoutParams(lp);
 
-                textView.setText(verse);
+                textView.setText(verse.getMessage());
             }
         }
 

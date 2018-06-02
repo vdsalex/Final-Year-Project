@@ -22,21 +22,14 @@ public class ModsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mods);
 
-        Button eminescuButton = (Button) findViewById(R.id.button_eminescu);
-        Button bacoviaButton = (Button) findViewById(R.id.button_bacovia);
-        Button stanescuButton = (Button) findViewById(R.id.button_stanescu);
+        final Button eminescuButton = (Button) findViewById(R.id.button_eminescu);
+        final Button bacoviaButton = (Button) findViewById(R.id.button_bacovia);
+        final Button stanescuButton = (Button) findViewById(R.id.button_stanescu);
 
         background = getDrawable(R.drawable.dark_grey_rectangle);
         background_pressed = getDrawable(R.drawable.rectangle_pressed);
 
-        setOnTouchListener(eminescuButton);
-        setOnTouchListener(bacoviaButton);
-        setOnTouchListener(stanescuButton);
-    }
-
-    private void setOnTouchListener(final Button btn)
-    {
-        btn.setOnTouchListener(new View.OnTouchListener()
+        eminescuButton.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
             public boolean onTouch(View v, MotionEvent event)
@@ -45,27 +38,75 @@ public class ModsActivity extends AppCompatActivity
 
                 if(action == MotionEvent.ACTION_DOWN)
                 {
-                    btn.setTextColor(Color.parseColor("#ff4e4e50"));
-                    btn.setBackground(background_pressed);
-                    CharSequence buttonText = btn.getText();
+                    eminescuButton.setTextColor(Color.parseColor("#ff4e4e50"));
+                    eminescuButton.setBackground(background_pressed);
+                    CharSequence buttonText = eminescuButton.getText();
 
                     if(buttonText.equals("Eminescu"))
                     {
                         startActivity(new Intent(ModsActivity.this, ModEminescuActivity.class));
                     }
-                    else if(buttonText.equals("Bacovia"))
+                }
+                else if(action == MotionEvent.ACTION_UP)
+                {
+                    eminescuButton.setTextColor(Color.parseColor("#fffce87d"));
+                    eminescuButton.setBackground(background);
+                }
+
+                return true;
+            }
+        });
+
+        bacoviaButton.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                int action = event.getAction();
+
+                if(action == MotionEvent.ACTION_DOWN)
+                {
+                    bacoviaButton.setTextColor(Color.parseColor("#ff4e4e50"));
+                    bacoviaButton.setBackground(background_pressed);
+                    CharSequence buttonText = bacoviaButton.getText();
+
+                    if(buttonText.equals("Bacovia"))
                     {
                         startActivity(new Intent(ModsActivity.this, ModBacoviaActivity.class));
                     }
-                    else
+                }
+                else if(action == MotionEvent.ACTION_UP)
+                {
+                    bacoviaButton.setTextColor(Color.parseColor("#fffce87d"));
+                    bacoviaButton.setBackground(background);
+                }
+
+                return true;
+            }
+        });
+
+        stanescuButton.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                int action = event.getAction();
+
+                if(action == MotionEvent.ACTION_DOWN)
+                {
+                    stanescuButton.setTextColor(Color.parseColor("#ff4e4e50"));
+                    stanescuButton.setBackground(background_pressed);
+                    CharSequence buttonText = stanescuButton.getText();
+
+                    if(buttonText.equals("Stănescu"))
                     {
                         startActivity(new Intent(ModsActivity.this, ModStanescuActivity.class));
                     }
                 }
                 else if(action == MotionEvent.ACTION_UP)
                 {
-                    btn.setTextColor(Color.parseColor("#fffce87d"));
-                    btn.setBackground(background);
+                    stanescuButton.setTextColor(Color.parseColor("#fffce87d"));
+                    stanescuButton.setBackground(background);
                 }
 
                 return true;

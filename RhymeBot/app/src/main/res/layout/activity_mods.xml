@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_grey"
     tools:context="com.example.alex.rhymebot.Activities.ModsActivity">
 
     <ImageView
@@ -16,67 +17,57 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/fond_gri_inchis"
-        android:layout_marginTop="-10dp"/>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/fond_gri_deschis"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:scaleType="fitXY"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.0"/>
+        />
 
     <Button
         android:id="@+id/button_eminescu"
         android:layout_width="144dp"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="80dp"
         android:background="@drawable/dark_grey_rectangle"
         android:text="Eminescu"
         android:textAllCaps="false"
         android:textColor="@color/gold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView1"
+        app:layout_constraintBottom_toTopOf="@+id/button_bacovia"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
 
     <Button
         android:id="@+id/button_bacovia"
         android:layout_width="144dp"
-        android:layout_height="43dp"
-        android:layout_marginBottom="30dp"
+        android:layout_height="48dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="41dp"
         android:background="@drawable/dark_grey_rectangle"
         android:text="Bacovia"
         android:textAllCaps="false"
         android:textColor="@color/gold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_eminescu"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintBottom_toTopOf="@+id/button_stanescu"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
 
     <Button
         android:id="@+id/button_stanescu"
         android:layout_width="144dp"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="41dp"
         android:background="@drawable/dark_grey_rectangle"
         android:text="Stănescu"
         android:textAllCaps="false"
         android:textColor="@color/gold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintTop_toBottomOf="@+id/button_bacovia"/>
 
     <ImageView
@@ -85,12 +76,16 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/rhymebot_moduri_text"
         app:layout_constraintTop_toTopOf="@+id/imageView1"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        android:layout_marginTop="80dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/imageView1"
         android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.0"/>
 
 </android.support.constraint.ConstraintLayout>

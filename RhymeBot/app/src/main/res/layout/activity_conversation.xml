@@ -43,30 +43,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/imageButton2"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="12dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginStart="8dp"
             android:layout_toStartOf="@+id/imageButton2"
             android:background="@drawable/dark_grey_rectangle"
-            android:inputType="textCapSentences|textMultiLine"
-            android:maxLines="10"
-            android:maxLength="2000"
             android:hint="@string/edit_text_hint"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="2000"
+            android:maxLines="10"
             android:padding="10dp"
             android:textColor="@color/gold"
             android:textColorHint="@color/light_grey"/>
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="40dp"
-            android:layout_height="42dp"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="12dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toStartOf="@+id/imageButton_delete"
             android:background="@android:color/transparent"
             android:contentDescription="@string/image_button_description"
             android:cropToPadding="false"
@@ -75,7 +73,24 @@
             android:paddingEnd="0dp"
             android:paddingStart="0dp"
             android:paddingTop="0dp"
-            app:srcCompat="@drawable/arrow_button_complete_medium"/>
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/arrow_button_v1"/>
+
+        <ImageButton
+            android:id="@+id/imageButton_delete"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="8dp"
+            android:foreground="@drawable/round_button_ripple_effect"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/icon_delete_conversation"/>
+
     </RelativeLayout>
 
     <ListView

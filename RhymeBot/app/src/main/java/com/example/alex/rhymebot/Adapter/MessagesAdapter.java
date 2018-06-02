@@ -2,6 +2,7 @@ package com.example.alex.rhymebot.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +14,29 @@ import com.example.alex.rhymebot.R;
 
 import java.util.ArrayList;
 
-public class MessagesAdapter extends ArrayAdapter<String>
+public class MessagesAdapter extends ArrayAdapter<ChatMessage>
 {
-    private ArrayList<String> messagesList;
+    private ArrayList<ChatMessage> messagesList;
 
-    public MessagesAdapter(Context context)
+    public MessagesAdapter(Context context, ArrayList<ChatMessage> messages)
     {
-        super(context, R.layout.list_item_layout, R.id.textview_list_item);
-        this.messagesList = new ArrayList<>();
+        super(context, R.layout.list_item_layout, R.id.textview_list_item, messages);
+        this.messagesList = messages;
+    }
+
+    public ArrayList<ChatMessage> getMessagesList()
+    {
+        return messagesList;
     }
 
     @Override
-    public void add(String chatMessage)
+    public void remove(ChatMessage message)
+    {
+        messagesList.remove(message);
+    }
+
+    @Override
+    public void add(ChatMessage chatMessage)
     {
         messagesList.add(chatMessage);
     }
@@ -36,7 +48,7 @@ public class MessagesAdapter extends ArrayAdapter<String>
     }
 
     @Override
-    public String getItem(int index)
+    public ChatMessage getItem(int index)
     {
         return messagesList.get(index);
     }
@@ -45,12 +57,13 @@ public class MessagesAdapter extends ArrayAdapter<String>
     public View getView(int position, View convertView, ViewGroup parent)
     {
         View view = convertView;
-        String message = this.getItem(position);
+        ChatMessage message = this.getItem(position);
 
         if(view == null)
         {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_item_layout, null);
+
             TextView textView = (TextView) view.findViewById(R.id.textview_list_item);
 
             if(position % 2 == 0)
@@ -78,7 +91,7 @@ public class MessagesAdapter extends ArrayAdapter<String>
                 textView.setLayoutParams(lp);
             }
 
-            textView.setText(message);
+            textView.setText(message.getMessage());
         }
         else
         {
@@ -111,10 +124,11 @@ public class MessagesAdapter extends ArrayAdapter<String>
                     textView.setLayoutParams(lp);
                 }
 
-                textView.setText(message);
+                textView.setText(message.getMessage());
             }
         }
 
+        Log.i("tag", "ceva");
         return view;
     }
 }
