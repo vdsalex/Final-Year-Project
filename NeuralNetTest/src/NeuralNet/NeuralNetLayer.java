@@ -11,9 +11,11 @@ public class NeuralNetLayer
     {
         this.neurons = new ArrayList<>();
     }
-
     public NeuralNetLayer(List<Neuron> neurons)
     {
         this.neurons = neurons;
     }
+
+    // getter
+    public List<Neuron> getNeurons() {return neurons; }
 }

@@ -12,4 +12,10 @@ public class NeuralNet
         this.hiddenLayer = hiddenLayer;
         this.outputLayer = outputLayer;
     }
+
+    // getters
+    public NeuralNetLayer getInputLayer() { return inputLayer; }
+    public NeuralNetLayer getHiddenLayer() { return hiddenLayer; }
+    public NeuralNetLayer getOutputLayer() { return outputLayer; }
+
 }

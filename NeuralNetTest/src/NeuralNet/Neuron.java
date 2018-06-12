@@ -15,6 +15,7 @@ public class Neuron
     {
         this.inputConnections = new ArrayList<>();
         this.outputConnections = new ArrayList<>();
+        this.input = 0.0;
     }
 
     public Neuron(double input)

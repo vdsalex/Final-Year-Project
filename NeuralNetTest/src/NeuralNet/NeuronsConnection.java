@@ -30,5 +30,4 @@ public class NeuronsConnection
     public Neuron getFromNeuron() { return fromNeuron; }
     public Neuron getToNeuron() { return toNeuron; }
     public double getWeight() { return weight; }
-
 }

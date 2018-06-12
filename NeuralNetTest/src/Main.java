@@ -1,122 +1,102 @@
 import NeuralNet.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main
 {
-    private final static int HIDDEN_LAYER_SIZE = 3;
     private static List<String> vocabulary;
+    private static AuxiliaryFunctions auxiliary;
+    private final static int CONTEXT_SIZE = 1;
+    private final static int RIGHT = 1;
+    private final static int LEFT = -1;
 
     public static void main(String[] args) throws IOException
     {
-        NeuralNet neuralNet = initializeNetwork();
-    }
+        Initializer initializer = new Initializer();
 
-    private static void setVocabulary(String filename) throws IOException
-    {
-        vocabulary = new ArrayList<>();
+        NeuralNet neuralNet = initializer.initializeNetwork();
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
-        String line;
+        vocabulary = initializer.getVocabulary();
+        String poetry = initializer.getPoetry();
+        auxiliary = new AuxiliaryFunctions(vocabulary, poetry);
 
-        while((line = bufferedReader.readLine()) != null)
+        int poetryLength = poetry.length();
+        int index = auxiliary.skipSeparators(0, RIGHT);
+
+        while(index < poetryLength)
         {
-            vocabulary.add(line.trim());
-        }
-    }
+            String targetWord = auxiliary.getWord(index).toLowerCase();
+            List<String> contextWordsRight = auxiliary.getFirstContextSizeWords(CONTEXT_SIZE, index + targetWord.length(), RIGHT);
+            List<String> contextWordsLeft = auxiliary.getFirstContextSizeWords(CONTEXT_SIZE, index - 1, LEFT);
 
-    private static void setWeights(double[][] weights, String filename) throws IOException
-    {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
-        String line;
-        int i = 0, j;
+            printWordAndList(targetWord, contextWordsLeft);
+            printWordAndList(targetWord, contextWordsRight);
+            System.out.println();
 
-        while((line = bufferedReader.readLine()) != null)
-        {
-            String[] lineValues = line.split(" ");
-            j = 0;
+            index += targetWord.length();
 
-            for(String valueString: lineValues)
+            if(auxiliary.isEndStatementChar(poetry.charAt(index)))
             {
-                double value = Double.parseDouble(valueString.trim());
-                weights[i][j++] = value;
+                index = auxiliary.skipEndStatementChars(index);
+                index = auxiliary.skipSeparators(index, RIGHT);
             }
-
-            i++;
-        }
-    }
-
-    private static void initializeNeuronLayer(List<Neuron> neurons, int n)
-    {
-        for(int i = 0; i < n; i++)
-        {
-            Neuron neuron = new Neuron(0.0);
-
-            neurons.add(neuron);
-        }
-    }
-
-    private static void initializeNetworkConnections(List<Neuron> input, List<Neuron> hidden, List<Neuron> output, double[][] inputWeights, double[][] outputWeights)
-    {
-        int numberOfNeurons = input.size();
-
-        for(int i = 0; i < numberOfNeurons; i++)
-        {
-            Neuron inputNeuron = input.get(i);
-            Neuron outputNeuron = output.get(i);
-
-            for(int j = 0; j < HIDDEN_LAYER_SIZE; j++)
+            else
             {
-                Neuron hiddenNeuron = hidden.get(j);
-
-                NeuronsConnection connectionInputHidden =
-                        new NeuronsConnection(inputNeuron, hiddenNeuron, inputWeights[i][j]);
-
-                NeuronsConnection connectionHiddenOutput =
-                        new NeuronsConnection(hiddenNeuron, outputNeuron, outputWeights[j][i]);
-
-                inputNeuron.addOutputConnection(connectionInputHidden);
-                hiddenNeuron.addInputConnection(connectionInputHidden);
-                hiddenNeuron.addOutputConnection(connectionHiddenOutput);
-                outputNeuron.addInputConnection(connectionHiddenOutput);
+                index = auxiliary.skipSeparators(index, RIGHT);
+                index = auxiliary.skipEndStatementChars(index);
             }
         }
+
+        //trainNetwork(neuralNet, "plin", "cornul");
     }
 
-    private static NeuralNet initializeNetwork() throws IOException
+    private static void trainNetwork(NeuralNet neuralNet, String contextWordString, String targetWordString)
     {
-        List<Neuron> inputNeurons = new ArrayList<>();
-        List<Neuron> hiddenNeurons = new ArrayList<>();
-        List<Neuron> outputNeurons = new ArrayList<>();
+        int vocabularySize = vocabulary.size();
 
-        setVocabulary("resources/vocabulary.txt");
+        int i = auxiliary.findWord(targetWordString, 0, vocabularySize / 2, vocabularySize - 1);
+        int j = auxiliary.findWord(contextWordString, 0, vocabularySize / 2, vocabularySize - 1);
 
-        int numberOfNeurons = vocabulary.size();
-        double[][] inputWeights = new double[numberOfNeurons][3];
-        double[][] outputWeights = new double[3][numberOfNeurons];
+        double[] targetWordVector = auxiliary.getWordVector(targetWordString, vocabularySize);
 
-        setWeights(inputWeights, "resources/wi.txt");
-        setWeights(outputWeights, "resources/wo.txt");
+        neuralNet.getInputLayer().getNeurons().get(j).setInput(1.0);
 
-        initializeNeuronLayer(inputNeurons, numberOfNeurons);
-        initializeNeuronLayer(hiddenNeurons, HIDDEN_LAYER_SIZE);
-        initializeNeuronLayer(outputNeurons, numberOfNeurons);
-        initializeNetworkConnections(inputNeurons, hiddenNeurons, outputNeurons, inputWeights, outputWeights);
+        auxiliary.calculateInputsForLayer(neuralNet.getHiddenLayer());
+        auxiliary.calculateInputsForLayer(neuralNet.getOutputLayer());
 
-        NeuralNetLayer inputLayer = new NeuralNetLayer(inputNeurons);
-        NeuralNetLayer hiddenLayer = new NeuralNetLayer(hiddenNeurons);
-        NeuralNetLayer outputLayer = new NeuralNetLayer(outputNeurons);
+        double expSum = auxiliary.expSumInputsOfOutputLayerNeurons(neuralNet.getOutputLayer().getNeurons());
 
-        return new NeuralNet(inputLayer, hiddenLayer, outputLayer);
+        double[] outputVector = new double[vocabularySize];
+
+        for(int index = 0; index < vocabularySize; index++)
+        {
+            outputVector[index] = auxiliary.softmax(neuralNet.getOutputLayer().getNeurons().get(index).getOutput(), expSum);
+        }
     }
 
-    private static void trainNetwork(NeuralNet neuralNet, String targetWordString, String contextWordString)
+    private static void printWordAndList(String word, List<String> list)
     {
-        double[] targetWord = new double[vocabulary.size()];
-        double[] contextWord = new double[vocabulary.size()];
+        StringBuilder stringBuilder = new StringBuilder("");
+        System.out.print("(");
+        System.out.print(word);
+        System.out.print(", ");
+
+        for(String listItem: list)
+        {
+            stringBuilder.append(listItem);
+            stringBuilder.append(", ");
+        }
+
+        if(stringBuilder.length() > 0)
+        {
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        }
+
+        stringBuilder.append(')');
+
+        System.out.print(stringBuilder.toString());
+        System.out.println();
     }
 }
