@@ -100,10 +100,10 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="70dp"
         android:layout_marginTop="83dp"
-        android:background="@color/light_grey"
-        android:smoothScrollbar="true"
-        android:scrollingCache="false"
         android:animationCache="false"
+        android:background="@color/light_grey"
         android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:dividerHeight="0dp"
+        android:scrollingCache="false"
+        android:smoothScrollbar="true"/>
 </FrameLayout>

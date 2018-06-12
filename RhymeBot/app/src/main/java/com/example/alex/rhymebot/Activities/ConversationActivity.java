@@ -156,6 +156,7 @@ public class ConversationActivity extends AppCompatActivity
                                 if (!verses.getIsSaved())
                                 {
                                     verses.setIsSaved(true);
+                                    messagesAdapter.notifyDataSetChanged();
 
                                     if (verses.getActiveMod() == '0')
                                     {
@@ -178,6 +179,7 @@ public class ConversationActivity extends AppCompatActivity
                                 else
                                 {
                                     verses.setIsSaved(false);
+                                    messagesAdapter.notifyDataSetChanged();
 
                                     if (verses.getActiveMod() == '0')
                                     {

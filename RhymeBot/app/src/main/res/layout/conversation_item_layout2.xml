@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/message_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="11dp"
+        >
+
+        <TextView
+            android:id="@+id/textview_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_alignEnd="@+id/textview_message_body"
+            android:layout_below="@+id/textview_message_body"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginStart="5dp"
+            android:text="TextView"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imageView_saved"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_alignBottom="@+id/textview_mode"
+            android:layout_toStartOf="@+id/textview_mode"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/saved_verses_icon"/>
+
+        <TextView
+            android:id="@+id/textview_message_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textColor="@color/colorPrimaryDark"/>
+    </RelativeLayout>
+
+</RelativeLayout>
