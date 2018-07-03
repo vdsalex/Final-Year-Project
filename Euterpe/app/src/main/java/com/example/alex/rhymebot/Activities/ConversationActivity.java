@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 import com.example.alex.rhymebot.Adapter.ChatMessage;
 import com.example.alex.rhymebot.Adapter.MessagesAdapter;
 
-import com.example.alex.rhymebot.Bot;
+import com.example.alex.rhymebot.BotPackage.Bot;
 import com.example.alex.rhymebot.R;
 
 import java.io.BufferedReader;
@@ -97,7 +96,12 @@ public class ConversationActivity extends AppCompatActivity
                 return;
             }
 
-            bot = new Bot();
+            String vocabPath = getFilesDir().getPath() + "/vocabulary_i.txt";
+            String adjPath = getFilesDir().getPath() + "/adjectives_i.txt";
+            String advPath = getFilesDir().getPath() + "/adverbs_i.txt";
+            String vbsPath = getFilesDir().getPath() + "/verbs_i.txt";
+            String nnsPath = getFilesDir().getPath() + "/nouns_i.txt";
+            bot = new Bot(activeMod, vocabPath, adjPath, advPath, vbsPath, nnsPath);
 
             sendButton.setOnClickListener(new View.OnClickListener()
             {
